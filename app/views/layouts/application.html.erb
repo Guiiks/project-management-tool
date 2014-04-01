@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Project</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div id="ambiance-notification"></div>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a href="/">
+                Project Management
+            </a>
+        </div>
+        <form action="/search" method="POST" class="navbar-form navbar-left">
+            <div class="input-group">
+                    <input id="q" name="q" class="form-control" type="text" placeholder="Search...">
+          					<span class="input-group-btn">
+          					    <button class="btn btn-primary" type="submit">Search <i class="fa fa-search"></i></button>
+          					</span>
+            </div>
+        </form>
+        <ul class="nav navbar-nav pull-right">
+        	<%- if user_signed_in? %>
+
+            <li><a href="/companies"><i class="fa fa-building-o"></i> Companies</a></li>
+            <li><a href="/missions"><i class="fa fa-tasks"></i> Projects</a></li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-user"></i>
+                Connected as <%= current_user.email %> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/users/edit"><i class="fa fa-cog"></i> Settings</a></li>
+                <li><a data-method="delete" href="/users/sign_out" rel="nofollow"><i class="fa fa-power-off"></i> Sign out</a></li>
+
+              </ul>
+            </li>
+
+
+    			<%- else %>
+            <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="/users/sign_up"><i class="fa fa-pencil"></i> Register</a></li>
+            <li><a href="/users/sign_in"><i class="fa fa-sign-in"></i> Sign in</a></li>
+    			<%- end %>
+        </ul>
+    </div>
+</nav>
+
+<div id="content">
+  <%= yield %>
+</div>
+
+<% if(notice) %>
+  <script type="text/javascript">
+    $.ambiance({message: "<%= notice %>", fade: true, timeout: 2});
+  </script>
+<% end %>
+<% if(alert) %>
+  <script type="text/javascript">
+    $.ambiance({message: "<%= alert %>", fade: true, timeout: 2});
+  </script>
+<% end %>
+</body>
+</html>

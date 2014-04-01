@@ -1,0 +1,37 @@
+<h1>Listing companies</h1>
+<br />
+<h4> <a href="/companies/new"><i class="fa fa-plus"></i> Add a company</a></h4>
+<br />
+
+
+<div class="row">
+  <% @companies.each do |company| %>
+    <div class="col-sm-6 col-md-4">
+      <div class="thumbnail">
+        <div class="buttons">
+          <a href="/companies/<%= company.id %>"><i class="fa fa-eye"></i></a>
+          <a href="/companies/<%= company.id %>/edit"><i class="fa fa-edit"></i></a>
+          <a data-confirm="Are you sure?" data-method="delete" href="/companies/<%= company.id %>" rel="nofollow"><i class="fa fa-trash-o"></i></a>
+        </div>
+        <div class="logo">
+          <%= image_tag company.avatar.url(:medium) %>
+        </div>
+        <div class="caption">
+          <h3><%= company.name %></h3><br />
+          <div class="scroller">
+            <p><%= company.description %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<script>
+$(document).ready(function() {
+    $('.scroller').slimScroll({
+        height: '100px',
+        wheelStep: '30px'
+    });
+});
+</script>

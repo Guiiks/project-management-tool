@@ -1,0 +1,35 @@
+<%- if user_signed_in? %>
+    <div id="timeline"></div>
+    <script>
+        $.getJSON( "/missions.json", function(json) {
+            data = Array();
+            for(var i=0; i<json.length; i++) {
+                data.push({
+                    type: 'blog_post',
+                    date: json[i].updated_at,
+                    title: json[i].name,
+                    width: 400,
+                    content: json[i].description,
+                    readmore: '/missions/'+json[i].id,
+                    image: ''
+                });
+            }
+
+            var timeline = new Timeline($('#timeline'), data);
+            options       = {
+                animation:   true,
+                lightbox:    true,
+                showYear:    true,
+                allowDelete: false,
+                columnMode:  'dual'
+            };
+            timeline.setOptions(options);
+            timeline.display();
+        });
+    </script>
+<%- else %>
+    <div class="well hero">
+        <h1>Ibsciss</h1>
+        <h3>Welcome to our internal project management system !</h3>
+    </div>
+<%- end %>

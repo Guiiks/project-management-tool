@@ -1,0 +1,29 @@
+<h1>Listing missions</h1>
+<br />
+<h4><a href="/missions/new"><i class="fa fa-plus"></i> Add a project</a></h4>
+<br />
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Customer</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @missions.each do |mission| %>
+      <tr>
+        <td class="center"><%= mission.name %></td>
+        <td><%= mission.description %></td>
+        <td><%= mission.company %></td>
+        <td>
+          <a href="/missions/<%= mission.id %>"><i class="fa fa-eye"></i>
+          <a href="/missions/<%= mission.id %>/edit"><i class="fa fa-edit"></i>
+          <a data-confirm="Are you sure?" data-method="delete" href="/missions/<%= mission.id %>" rel="nofollow"><i class="fa fa-trash-o"></i></a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
