@@ -146,7 +146,7 @@
         url: '/missions',
         data:
         {
-          'id': <%= @mission.id %>,
+          'id': '<%= @mission.id %>',
           'company_id': $("#company").val(),
           'mission[name]': $('#mission_name').val(),
           'mission[description]': $("#editor").html(),
