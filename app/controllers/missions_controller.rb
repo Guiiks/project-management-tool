@@ -24,10 +24,19 @@ class MissionsController < ApplicationController
   # POST /missions
   # POST /missions.json
   def create
+
+    # Creating the new project
     @mission = Mission.new(mission_params)
     puts mission_params
     @mission.company_id = params[:company_id]
     @mission.save
+
+    # Now sending an email to all users
+    @users = User.all
+    @users.each do |user|
+      ModelMailer.new_project(user.email).deliver
+    end
+    
     respond_to do |format|
       if @mission.save
         format.html { redirect_to @mission, notice: 'Mission was successfully created.' }

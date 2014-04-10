@@ -51,3 +51,5 @@ gem "mini_magick"
 
 # For images
 gem "paperclip", "~> 4.1"
+
+gem 'mailboxer'
