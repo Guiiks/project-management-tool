@@ -18,7 +18,7 @@
                 Project Management
             </a>
         </div>
-        <form action="/search" method="POST" class="navbar-form navbar-left">
+        <form action="/search" method="GET" class="navbar-form navbar-left">
             <div class="input-group">
                     <input id="q" name="q" class="form-control" type="text" placeholder="Search...">
           					<span class="input-group-btn">
@@ -58,6 +58,7 @@
   <%= yield %>
 </div>
 
+<!-- If we have a message, we post it through a notification -->
 <% if(notice) %>
   <script type="text/javascript">
     $.ambiance({message: "<%= notice %>", fade: true, timeout: 2});

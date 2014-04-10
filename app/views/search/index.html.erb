@@ -1,0 +1,30 @@
+<!-- Displaying companies matching with the request -->
+<% @companies.each do |company| %>
+	<div class="search-results">
+		<div class="col-md-1">
+			<img alt="avatar-user" src="<%= company.avatar %>" style="width: 100%; margin-top: 13px;"/>
+		</div>
+		<div class="col-md-11">
+			<h4><a href="/companies/<%= company.id %>">
+				<%= company.name %>
+			</a></h4>
+			<div class="url">/companies/<%= company.id %> <i class="fa fa-caret-down"></i></div>
+			<p><%= company.description %></p>
+		</div>
+	</div>
+<% end %>
+
+<!-- Displaying projects matching with the request -->
+<% @missions.each do |mission| %>
+	<div class="search-results">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-11">
+			<h4><a href="/missions/<%= mission.id %>">
+				<%= mission.name %>
+			</a></h4>
+			<div class="url">/missions/<%= mission.id %> <i class="fa fa-caret-down"></i></div>
+			<p style="height:100px; overflow:hidden"><%= mission.description %></p>
+		</div>
+	</div>
+<% end %>

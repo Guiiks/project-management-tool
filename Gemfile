@@ -49,4 +49,5 @@ gem 'devise'
 gem "carrierwave"
 gem "mini_magick"
 
+# For images
 gem "paperclip", "~> 4.1"

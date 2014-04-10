@@ -25,7 +25,9 @@ class MissionsController < ApplicationController
   # POST /missions.json
   def create
     @mission = Mission.new(mission_params)
-
+    puts mission_params
+    @mission.company_id = params[:company_id]
+    @mission.save
     respond_to do |format|
       if @mission.save
         format.html { redirect_to @mission, notice: 'Mission was successfully created.' }
@@ -69,6 +71,6 @@ class MissionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mission_params
-      params.require(:mission).permit(:name, :description)
+      params.require(:mission).permit(:name, :description, :company_id)
     end
 end

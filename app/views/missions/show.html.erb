@@ -1,14 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @mission.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @mission.description %>
-</p>
-
-<%= link_to 'Edit', edit_mission_path(@mission) %> |
-<%= link_to 'Back', missions_path %>
+<div class="form" style="width:80%">
+	<i class="fa fa-tags" style="font-size:50px"></i>
+	<br /><br />
+	<strong>Name:</strong><br />
+	<%= @mission.name %><br /><br />
+	<strong>Description:</strong><br />
+	<%=raw @mission.description %><br /><br />
+	<strong>Created the:</strong><br />
+	<%= @mission.created_at %><br /><br />
+	<strong>Updated the:</strong><br />
+	<%= @mission.updated_at %><br />
+	<br />
+	<%= link_to 'Edit', edit_mission_path(@mission) %> |
+	<%= link_to 'Back', missions_path %>
+</div>

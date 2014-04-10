@@ -7,24 +7,44 @@
                 data.push({
                     type: 'blog_post',
                     date: json[i].updated_at,
-                    title: json[i].name,
+                    title: 'A new project has been added!',
                     width: 400,
-                    content: json[i].description,
+                    content: '<div class="row">'
+                            + '<div class="col-lg-3" style="text-align:center"><i class="fa fa-tags" style="font-size:50px"></i></div>'
+                            + '<div class="col-lg-8">' + '<h5>' + json[i].name + '</h5>'
+                            + json[i].description.substr(0,500) + '...</div></div>',
                     readmore: '/missions/'+json[i].id,
                     image: ''
                 });
             }
 
-            var timeline = new Timeline($('#timeline'), data);
-            options       = {
-                animation:   true,
-                lightbox:    true,
-                showYear:    true,
-                allowDelete: false,
-                columnMode:  'dual'
-            };
-            timeline.setOptions(options);
-            timeline.display();
+            $.getJSON( "/companies.json", function(json) {
+                for(var i=0; i<json.length; i++) {
+                    data.push({
+                        type: 'blog_post',
+                        date: json[i].updated_at,
+                        title: 'A new company has been added!',
+                        width: 400,
+                        content: '<div class="row">'
+                            + '<div class="col-lg-3" style="text-align:center"><i class="fa fa-building-o" style="font-size:50px"></i></div>'
+                            + '<div class="col-lg-8">' + '<h5>' + json[i].name + '</h5>'
+                            + json[i].description + '...</div></div>',
+                        readmore: '/companies/'+json[i].id,
+                        image: ''
+                    });
+                }
+                console.log(data);
+                var timeline = new Timeline($('#timeline'), data);
+                options       = {
+                    animation:   true,
+                    lightbox:    true,
+                    showYear:    true,
+                    allowDelete: false,
+                    columnMode:  'dual'
+                };
+                timeline.setOptions(options);
+                timeline.display();
+            });
         });
     </script>
 <%- else %>

@@ -10,6 +10,8 @@ class CompaniesController < ApplicationController
   # GET /companies/1
   # GET /companies/1.json
   def show
+    @company = Company.find params[:id]
+    @missions = @company.missions
   end
 
   # GET /companies/new
@@ -62,13 +64,13 @@ class CompaniesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  
     def set_company
       @company = Company.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # To allow only the following parameters
     def company_params
-      params.require(:company).permit(:name, :avatar, :description)
+      params.require(:company).permit(:name, :avatar, :description, :email, :phone)
     end
 end

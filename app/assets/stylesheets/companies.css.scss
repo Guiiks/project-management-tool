@@ -3,12 +3,18 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 div.logo {
-	height: 100px;
+	height: 200px;
 	text-align: center;
 }
 
-div.logo img {
+div.logoEdit {
 	height: 100%;
+}
+
+div.logo img {
+	width: 80%;
+	display: block;
+	margin: auto;
 }
 
 div.buttons {
